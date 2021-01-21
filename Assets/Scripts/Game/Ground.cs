@@ -2,53 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ground : MonoBehaviour
+public class Ground : Generator
 {
-    [SerializeField] private GameObject _groundTemplate;
-    [SerializeField] private int _blockssAmount;
     [SerializeField] private Transform _player;
     [SerializeField] private float _updateDistance;
 
-    private List<Transform> _grounds;
-
-    private Vector3 _nextBlockPosition 
-    { 
-        get 
-        {
-            var result = new Vector3(0, transform.position.y, 0);
-            if (_grounds.Count > 0)
-            {
-                Transform lastBlock = _grounds[_grounds.Count - 1];
-                result.x = lastBlock.position.x + lastBlock.localScale.x;
-            }
-            return result;
-        } 
-    } 
-
-    private void Start()
+    protected override Vector3 GetNewPosition()
     {
-        _grounds = new List<Transform>();
-        for (var i=0; i < _blockssAmount; i++)
+        var result = new Vector3(0, transform.position.y, 0);
+        if (_objects.Count > 0)
         {
-            var newblock = Instantiate(_groundTemplate, _nextBlockPosition, Quaternion.identity, transform);
-            _grounds.Add(newblock.transform);
+            Transform lastBlock = _objects[_objects.Count - 1];
+            result.x = lastBlock.position.x + lastBlock.localScale.x;
         }
+        return result;
     }
 
     private void Update()
     {
-        if (_player.position.x + _updateDistance > _nextBlockPosition.x)
+        if (_player.position.x + _updateDistance > GetNewPosition().x)
         {
-            MoveOldestBlock();
+            Spawn(GetNewPosition());
         }
     }
-
-    private void MoveOldestBlock()
-    {
-        Transform block = _grounds[0];
-        _grounds.RemoveAt(0);
-        block.transform.position = _nextBlockPosition;
-        _grounds.Add(block);
-    }
-
 }

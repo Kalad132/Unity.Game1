@@ -150,13 +150,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77e7443c1669894d86e59a653fa53dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _barrierTemplate: {fileID: 6384795369932446642, guid: 10308429f76bd884eb7f632adef01af1,
+  _template: {fileID: 6384795369932446642, guid: 10308429f76bd884eb7f632adef01af1,
     type: 3}
+  _maxAmount: 20
   _spawnDistance: 20
   _spawnPeriod: 10
   _spawnPeriodRandom: 2
   _player: {fileID: 1628563826}
-  _maxBarriers: 20
 --- !u!4 &56826043
 Transform:
   m_ObjectHideFlags: 0
@@ -274,14 +274,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10eaee2c36a4154ca3c26c078a29ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1628563826}
-  _coinTemplate: {fileID: 946575486648168657, guid: f870ac45ae986094a83f0940951965b0,
+  _template: {fileID: 946575486648168657, guid: f870ac45ae986094a83f0940951965b0,
     type: 3}
+  _maxAmount: 100
+  _player: {fileID: 1628563826}
   _spawnDistance: 30
   _RandomRangeSpawnY: 1
   _minSpawnY: -1.5
   _maxSpawnY: 1
-  _maxCoinsAmount: 100
 --- !u!4 &1081803468
 Transform:
   m_ObjectHideFlags: 0
@@ -424,9 +424,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255f7a5512e17384bb5cd06d2913b528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundTemplate: {fileID: 3330186026561803578, guid: 94ab95e468cb6f242bd52857c2d1690f,
+  _template: {fileID: 3330186026561803578, guid: 94ab95e468cb6f242bd52857c2d1690f,
     type: 3}
-  _blockssAmount: 3
+  _maxAmount: 4
   _player: {fileID: 1628563826}
   _updateDistance: 50
 --- !u!4 &1229000902

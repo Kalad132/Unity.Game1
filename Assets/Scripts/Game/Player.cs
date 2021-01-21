@@ -18,6 +18,13 @@ public class Player : MonoBehaviour
     private int _score;
 
     public UnityAction<int> ScoreChanged;
+    public void TryJump()
+    {
+        if (IsGrounded())
+        {
+            _body.AddForce(new Vector2(0, _jumpForce));
+        }
+    }
 
     private void Awake()
     {
@@ -27,16 +34,6 @@ public class Player : MonoBehaviour
         _score = 0;
         ScoreChanged?.Invoke(_score);
 
-    }
-
-    private void OnEnable()
-    {
-        _input.Jump += Jump;
-    }
-
-    private void OnDisable()
-    {
-        _input.Jump -= Jump;
     }
 
     private void Update()
@@ -54,19 +51,10 @@ public class Player : MonoBehaviour
         }
     }
 
-
     private bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.CircleCast(_collider.bounds.center, _collider.radius, Vector2.down, 0.1f, _groundLayer);
         return hit.collider != null;
-    }
-
-    private void Jump()
-    {
-        if (IsGrounded())
-        {
-            _body.AddForce(new Vector2(0, _jumpForce));
-        }
     }
 
     private void AddScore()
@@ -75,5 +63,3 @@ public class Player : MonoBehaviour
         ScoreChanged?.Invoke(_score);
     }
 }
-
-

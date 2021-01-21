@@ -15,14 +15,14 @@ public class MainMenu : MonoBehaviour
 
     public void ShowCredits()
     {
-        StartCoroutine(ChangeAlpha(_mainMenu, true));
-        StartCoroutine(ChangeAlpha(_credits, false, _fadeTime));
+        SetVisibility(_mainMenu, true);
+        SetVisibility(_credits, false, _fadeTime);
     }
 
     public void ShowMenu()
     {
-        StartCoroutine(ChangeAlpha(_credits, true));
-        StartCoroutine(ChangeAlpha(_mainMenu, false, _fadeTime));
+        SetVisibility(_credits, true);
+        SetVisibility(_mainMenu, false, _fadeTime);
     }
 
     public void StartGame()
@@ -37,20 +37,24 @@ public class MainMenu : MonoBehaviour
         _credits.blocksRaycasts = false;
     }
 
-    private IEnumerator ChangeAlpha(CanvasGroup menu, bool hide, float startDelay = 0)
+    private void SetVisibility(CanvasGroup menu, bool visibility, float startDelay = 0)
+    {
+        menu.blocksRaycasts = visibility;
+        menu.interactable = visibility;
+        float targetAlpha = visibility ? 1 : 0;
+        StartCoroutine(ChangeAlpha(menu, targetAlpha, _fadeTime, startDelay));
+    }
+
+    private IEnumerator ChangeAlpha(CanvasGroup menu, float alpha, float changingTime, float startDelay = 0)
     {
         yield return new WaitForSeconds(startDelay);
-        menu.interactable = !hide;
-        menu.blocksRaycasts = !hide;
+        var startingAlpha = menu.alpha;
         float fadingTimer = 0;
-        while (fadingTimer < _fadeTime)
+        while (fadingTimer < changingTime)
         {
             fadingTimer += Time.deltaTime;
-            if(hide)
-                menu.alpha = Mathf.Clamp(1f - fadingTimer / _fadeTime, 0, 1);
-            else
-                menu.alpha = Mathf.Clamp(fadingTimer / _fadeTime, 0, 1);
+            menu.alpha = Mathf.Lerp(startingAlpha, alpha, fadingTimer / changingTime);
             yield return null;
         }
-    }    
+    }
 }
