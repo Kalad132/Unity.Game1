@@ -2,20 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Generator : MonoBehaviour
+public class Generator : MonoBehaviour
 {
+    [SerializeField] private Transform _player;
+    [SerializeField] private float _updateDistance;
     [SerializeField] private GameObject _template;
     [SerializeField] private int _maxAmount;
+    [SerializeField] private float _nextDistanse;
+    [SerializeField] private float _RandomRangeSpawnY;
+    [SerializeField] private float _minSpawnY;
+    [SerializeField] private float _maxSpawnY;
 
-    protected List<Transform> _objects;
-
-    protected abstract Vector3 GetNewPosition();
+    private List<Transform> _objects;
 
     private void Awake()
     {
         _objects = new List<Transform>();
     }
-    protected void Spawn(Vector3 position)
+    private void Update()
+    {
+        if (_player.position.x + _updateDistance > GetNewPosition().x)
+        {
+            Spawn(GetNewPosition());
+        }
+    }
+    private void Spawn(Vector3 position)
     {
         var newObject = Instantiate(_template, position, Quaternion.identity, transform);
         _objects.Add(newObject.transform);
@@ -23,10 +34,31 @@ public abstract class Generator : MonoBehaviour
             DestroyOldest();
     }
 
-    protected void DestroyOldest()
+    private void DestroyOldest()
     {
         if (_objects[0] != null)
             Destroy(_objects[0].gameObject);
         _objects.RemoveAt(0);
     }
+
+    private Vector3 GetNewPosition()
+    {
+        Vector3 spawnPosition = new Vector3();
+        spawnPosition.x = GetLastPosition().x + _nextDistanse;
+        spawnPosition.y = Mathf.Clamp(GetLastPosition().y + Random.Range(-_RandomRangeSpawnY, _RandomRangeSpawnY), _minSpawnY, _maxSpawnY);
+        return spawnPosition;
+    }
+
+    private Vector3 GetLastPosition()
+    {
+        if (_objects.Count > 0)
+            return _objects[_objects.Count - 1].position;
+        else
+        {
+            var lastPosition = transform.position;
+            lastPosition.x -= _nextDistanse;
+            return lastPosition;
+        }
+    }
+
 }

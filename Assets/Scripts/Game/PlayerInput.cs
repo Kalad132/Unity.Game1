@@ -4,20 +4,21 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Player))]
+[RequireComponent(typeof(PlayerMover))]
 public class PlayerInput : MonoBehaviour
 {
-    private Player _player;
+    private PlayerMover _playerMover;
 
     private void Awake()
     {
-        _player = GetComponent<Player>();
+        _playerMover = GetComponent<PlayerMover>();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _player.TryJump();
+            _playerMover.TryJump();
         }
     }
 }

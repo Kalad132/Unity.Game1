@@ -147,16 +147,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 56826041}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77e7443c1669894d86e59a653fa53dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 68576fa63f0fc4d4e9f631ce24933ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 1628563826}
+  _updateDistance: 30
   _template: {fileID: 6384795369932446642, guid: 10308429f76bd884eb7f632adef01af1,
     type: 3}
-  _maxAmount: 20
-  _spawnDistance: 20
-  _spawnPeriod: 10
-  _spawnPeriodRandom: 2
-  _player: {fileID: 1628563826}
+  _maxAmount: 10
+  _nextDistanse: 15
+  _RandomRangeSpawnY: 0
+  _minSpawnY: -100
+  _maxSpawnY: 100
 --- !u!4 &56826043
 Transform:
   m_ObjectHideFlags: 0
@@ -165,7 +167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56826041}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: 15, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -271,17 +273,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1081803466}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a10eaee2c36a4154ca3c26c078a29ba8, type: 3}
+  m_Script: {fileID: 11500000, guid: 68576fa63f0fc4d4e9f631ce24933ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 1628563826}
+  _updateDistance: 20
   _template: {fileID: 946575486648168657, guid: f870ac45ae986094a83f0940951965b0,
     type: 3}
-  _maxAmount: 100
-  _player: {fileID: 1628563826}
-  _spawnDistance: 30
-  _RandomRangeSpawnY: 1
+  _maxAmount: 50
+  _nextDistanse: 1
+  _RandomRangeSpawnY: 0.5
   _minSpawnY: -1.5
-  _maxSpawnY: 1
+  _maxSpawnY: 2
 --- !u!4 &1081803468
 Transform:
   m_ObjectHideFlags: 0
@@ -290,7 +293,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081803466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -421,14 +424,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1229000900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 255f7a5512e17384bb5cd06d2913b528, type: 3}
+  m_Script: {fileID: 11500000, guid: 68576fa63f0fc4d4e9f631ce24933ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 1628563826}
+  _updateDistance: 100
   _template: {fileID: 3330186026561803578, guid: 94ab95e468cb6f242bd52857c2d1690f,
     type: 3}
-  _maxAmount: 4
-  _player: {fileID: 1628563826}
-  _updateDistance: 50
+  _maxAmount: 5
+  _nextDistanse: 30
+  _RandomRangeSpawnY: 0
+  _minSpawnY: -100
+  _maxSpawnY: 100
 --- !u!4 &1229000902
 Transform:
   m_ObjectHideFlags: 0
@@ -622,6 +629,7 @@ GameObject:
   - component: {fileID: 1628563827}
   - component: {fileID: 1628563828}
   - component: {fileID: 1628563829}
+  - component: {fileID: 1628563830}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -742,12 +750,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57008a2be5605fd4ca19a7c0b2282b86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rightForce: 10
-  _maxVelocity: 20
-  _jumpForce: 350
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &1628563829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,6 +762,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6cd5e58b90d0f4595e4d42f3f2386c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1628563830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628563823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836a15b933c7f3748a23291ede4c157e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rightForce: 100
+  _jumpForce: 350
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &1735394496
 GameObject:
   m_ObjectHideFlags: 0

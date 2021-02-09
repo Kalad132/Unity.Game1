@@ -15,14 +15,14 @@ public class MainMenu : MonoBehaviour
 
     public void ShowCredits()
     {
-        SetVisibility(_mainMenu, true);
-        SetVisibility(_credits, false, _fadeTime);
+        Show(_mainMenu);
+        Hide(_credits, _fadeTime);
     }
 
     public void ShowMenu()
     {
-        SetVisibility(_credits, true);
-        SetVisibility(_mainMenu, false, _fadeTime);
+        Show(_credits);
+        Hide(_mainMenu, _fadeTime);
     }
 
     public void StartGame()
@@ -37,12 +37,18 @@ public class MainMenu : MonoBehaviour
         _credits.blocksRaycasts = false;
     }
 
-    private void SetVisibility(CanvasGroup menu, bool visibility, float startDelay = 0)
+    private void Show(CanvasGroup menu, float startDelay = 0)
     {
-        menu.blocksRaycasts = visibility;
-        menu.interactable = visibility;
-        float targetAlpha = visibility ? 1 : 0;
-        StartCoroutine(ChangeAlpha(menu, targetAlpha, _fadeTime, startDelay));
+        menu.blocksRaycasts = true;
+        menu.interactable = true;
+        StartCoroutine(ChangeAlpha(menu, 1, _fadeTime, startDelay));
+    }
+
+    private void Hide(CanvasGroup menu, float startDelay = 0)
+    {
+        menu.blocksRaycasts = false;
+        menu.interactable = false;
+        StartCoroutine(ChangeAlpha(menu, 0, _fadeTime, startDelay));
     }
 
     private IEnumerator ChangeAlpha(CanvasGroup menu, float alpha, float changingTime, float startDelay = 0)
