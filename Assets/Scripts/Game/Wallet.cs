@@ -4,17 +4,16 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class Player : MonoBehaviour
+public class Wallet : MonoBehaviour
 {
     private int _score;
 
-    public UnityAction<int> ScoreChanged;
+    public event UnityAction<int> ScoreChanged;
 
     private void Awake()
     {
         _score = 0;
         ScoreChanged?.Invoke(_score);
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

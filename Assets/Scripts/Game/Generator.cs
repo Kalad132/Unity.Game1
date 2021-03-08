@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-    [SerializeField] private Transform _player;
-    [SerializeField] private float _updateDistance;
     [SerializeField] private GameObject _template;
+    [SerializeField] private Transform _player;
     [SerializeField] private int _maxAmount;
+    [SerializeField] private float _updateDistance;
     [SerializeField] private float _nextDistanse;
-    [SerializeField] private float _RandomRangeSpawnY;
+    [SerializeField] private float _randomSpawnY;
     [SerializeField] private float _minSpawnY;
     [SerializeField] private float _maxSpawnY;
 
@@ -45,20 +45,27 @@ public class Generator : MonoBehaviour
     {
         Vector3 spawnPosition = new Vector3();
         spawnPosition.x = GetLastPosition().x + _nextDistanse;
-        spawnPosition.y = Mathf.Clamp(GetLastPosition().y + Random.Range(-_RandomRangeSpawnY, _RandomRangeSpawnY), _minSpawnY, _maxSpawnY);
+        spawnPosition.y = Mathf.Clamp(GetLastPosition().y + RandomY(), _minSpawnY, _maxSpawnY);
         return spawnPosition;
     }
 
     private Vector3 GetLastPosition()
     {
         if (_objects.Count > 0)
+        {
             return _objects[_objects.Count - 1].position;
+        }    
         else
         {
             var lastPosition = transform.position;
             lastPosition.x -= _nextDistanse;
             return lastPosition;
         }
+    }
+
+    private float RandomY()
+    {
+        return Random.Range(-_randomSpawnY, _randomSpawnY);
     }
 
 }

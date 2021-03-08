@@ -150,13 +150,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68576fa63f0fc4d4e9f631ce24933ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1628563826}
-  _updateDistance: 30
   _template: {fileID: 6384795369932446642, guid: 10308429f76bd884eb7f632adef01af1,
     type: 3}
+  _player: {fileID: 1628563826}
   _maxAmount: 10
+  _updateDistance: 30
   _nextDistanse: 15
-  _RandomRangeSpawnY: 0
+  _RandomSpawnY: 0
   _minSpawnY: -100
   _maxSpawnY: 100
 --- !u!4 &56826043
@@ -276,15 +276,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68576fa63f0fc4d4e9f631ce24933ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1628563826}
-  _updateDistance: 20
   _template: {fileID: 946575486648168657, guid: f870ac45ae986094a83f0940951965b0,
     type: 3}
+  _player: {fileID: 1628563826}
   _maxAmount: 50
+  _updateDistance: 20
   _nextDistanse: 1
-  _RandomRangeSpawnY: 0.5
+  _RandomSpawnY: 0.4
   _minSpawnY: -1.5
-  _maxSpawnY: 2
+  _maxSpawnY: 1.5
 --- !u!4 &1081803468
 Transform:
   m_ObjectHideFlags: 0
@@ -427,13 +427,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68576fa63f0fc4d4e9f631ce24933ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1628563826}
-  _updateDistance: 100
   _template: {fileID: 3330186026561803578, guid: 94ab95e468cb6f242bd52857c2d1690f,
     type: 3}
+  _player: {fileID: 1628563826}
   _maxAmount: 5
+  _updateDistance: 100
   _nextDistanse: 30
-  _RandomRangeSpawnY: 0
+  _RandomSpawnY: 0
   _minSpawnY: -100
   _maxSpawnY: 100
 --- !u!4 &1229000902

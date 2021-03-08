@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(Wallet))]
 [RequireComponent(typeof(PlayerMover))]
 public class PlayerInput : MonoBehaviour
 {

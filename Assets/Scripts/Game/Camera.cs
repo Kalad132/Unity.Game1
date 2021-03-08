@@ -15,5 +15,4 @@ public class Camera : MonoBehaviour
         newPosition.x = Mathf.Lerp(transform.position.x, _player.transform.position.x + _offset, _speed);
         transform.position = newPosition;
     }
-
 }

@@ -5,7 +5,7 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private Wallet _player;
     [SerializeField] private TMP_Text _text;
 
     private void OnEnable()
@@ -23,5 +23,3 @@ public class Score : MonoBehaviour
         _text.text = newScore.ToString();
     }
 }
-
-
