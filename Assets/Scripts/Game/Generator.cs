@@ -7,8 +7,8 @@ public class Generator : MonoBehaviour
     [SerializeField] private GameObject _template;
     [SerializeField] private Transform _player;
     [SerializeField] private int _maxAmount;
-    [SerializeField] private float _updateDistance;
-    [SerializeField] private float _nextDistanse;
+    [SerializeField] private float _nextObjectSpawnDistance;
+    [SerializeField] private float _distanceBetweenObjects;
     [SerializeField] private float _randomSpawnY;
     [SerializeField] private float _minSpawnY;
     [SerializeField] private float _maxSpawnY;
@@ -19,13 +19,15 @@ public class Generator : MonoBehaviour
     {
         _objects = new List<Transform>();
     }
+
     private void Update()
     {
-        if (_player.position.x + _updateDistance > GetNewPosition().x)
+        if (_player.position.x + _nextObjectSpawnDistance > GetNewPosition().x)
         {
             Spawn(GetNewPosition());
         }
     }
+
     private void Spawn(Vector3 position)
     {
         var newObject = Instantiate(_template, position, Quaternion.identity, transform);
@@ -44,7 +46,7 @@ public class Generator : MonoBehaviour
     private Vector3 GetNewPosition()
     {
         Vector3 spawnPosition = new Vector3();
-        spawnPosition.x = GetLastPosition().x + _nextDistanse;
+        spawnPosition.x = GetLastPosition().x + _distanceBetweenObjects;
         spawnPosition.y = Mathf.Clamp(GetLastPosition().y + RandomY(), _minSpawnY, _maxSpawnY);
         return spawnPosition;
     }
@@ -58,7 +60,7 @@ public class Generator : MonoBehaviour
         else
         {
             var lastPosition = transform.position;
-            lastPosition.x -= _nextDistanse;
+            lastPosition.x -= _distanceBetweenObjects;
             return lastPosition;
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(Wallet))]
 [RequireComponent(typeof(PlayerMover))]
+
 public class PlayerInput : MonoBehaviour
 {
     private PlayerMover _playerMover;
