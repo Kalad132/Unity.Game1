@@ -45,9 +45,8 @@ public class Generator : MonoBehaviour
 
     private Vector3 GetNewPosition()
     {
-        Vector3 spawnPosition = new Vector3();
-        spawnPosition.x = GetLastPosition().x + _distanceBetweenObjects;
-        spawnPosition.y = Mathf.Clamp(GetLastPosition().y + RandomY(), _minSpawnY, _maxSpawnY);
+        Vector3 spawnPosition = GetLastPosition() + new Vector3(_nextDistance, GetRandomY(), 0); ;
+        spawnPosition.y = Mathf.Clamp(spawnPosition.y, _minSpawnY, _maxSpawnY);
         return spawnPosition;
     }
 
@@ -65,9 +64,8 @@ public class Generator : MonoBehaviour
         }
     }
 
-    private float RandomY()
+    private float GetRandomY()
     {
         return Random.Range(-_randomSpawnY, _randomSpawnY);
     }
-
 }
